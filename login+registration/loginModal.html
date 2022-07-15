@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>Login Modal</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/index.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#fullscreenModal").modal("show");
+    });
+  </script>
+
+</head>
+
+<body>
+
+  <div class="modal fade" id="fullscreenModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header welcm" style="height: 50px">
+          <h5 class="modal-title titlez">User Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body loginBod">
+          <main>
+            <div class="container">
+              <section
+                class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex justify-content-center pb-1">
+                        <a href="#" class="logo d-flex align-items-center w-auto">
+                          <span class="d-none d-lg-block text-nowrap" style="
+                                font-family: algerian;
+                                color: rgb(59, 60, 81);
+                              ">Karibu Groceries Ltd.</span>
+                        </a>
+                      </div>
+
+                      <div class="card mb-3">
+                        <div class="card-body purp pb-4">
+                          <div class="pt-2 pb-2">
+                            <h5 class="card-title text-center pt-2 pb-0 fs-4" style="
+                                  color: rgba(249, 231, 209, 0.854);
+                                  font-family: algerian;
+                                ">
+                              Login to Your Account
+                            </h5>
+                            <p class="text-center small" style="color: rgba(249, 231, 209, 0.854)">
+                              Enter your username & password to login
+                            </p>
+                          </div>
+
+                          <form class="row g-3 needs-validation" name="userlogin">
+                            <div class="col-12">
+                              <label for="yourUsername" style="color: rgba(249, 231, 209, 0.854)"
+                                class="form-label mb-0">Username</label>
+                              <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input placeholder="Username / Email" type="text" name="username"  onblur="userNamLogin()"class="form-control"
+                                  id="yourUsername" required />
+                                <div class="invalid-feedback">
+                                  Please enter your username.
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-12">
+                              <label for="yourPassword" style="color: rgba(249, 231, 209, 0.854)"
+                                class="form-label mb-0">Password</label>
+                              <input placeholder="Password" type="password" name="password" onblur="userPassLogin()" class="form-control"
+                                id="yourPassword" required />
+                              <div class="invalid-feedback">
+                                Please enter your password!
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <label for="authorizationSelect" style="color: rgba(249, 231, 209, 0.854)"
+                                class="form-label mb-0">Authorization</label>
+                              <select name="authorization" onblur="userAuthorLogin()" class="form-select"
+                                id="authorizationSelect" aria-label="authorization" required>
+                                <option selected disabled value="">Select Authorization:</option>
+                                <option value="1">Director</option>
+                                <option value="2">Manager</option>
+                                <option value="3">Sales Agent</option>
+                              </select>
+                            </div>
+
+                            <div class="col-12">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" value="true"
+                                  id="rememberMe" />
+                                <label class="form-check-label" for="rememberMe"
+                                  style="color: rgba(249, 231, 209, 0.854)">Remember me</label>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <button class="btn btn-dark w-100 mt-1" type="submit" href="./index.html">
+                                Login
+                              </button>
+                            </div>
+                            <div class="col-12">
+                              <p class="small mb-0 pt-2" style="
+                                    color: rgba(249, 231, 209, 0.854);
+                                    text-align: center;
+                                  ">
+                                Don't have account?
+                                <a href="../login+registration/registerModal.html" style="
+                                      color: rgba(249, 231, 209, 0.854);
+                                      text-decoration: underline 1px solid
+                                        rgba(249, 231, 209, 0.854);
+                                    ">Create an account</a>
+                              </p>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </main>
+        </div>
+        <div class="modal-footer welcm" style="justify-content: center; height: 50px">
+          <p class="titlez">Copyright 2022 &copy; Dev'd By Dom</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/index.js"></script>
+</body>
+
+</html>

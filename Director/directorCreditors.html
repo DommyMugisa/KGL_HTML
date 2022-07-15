@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>Director Creditors</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link
+      href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+  <!-- Datatables CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/index.css" />
+</head>
+
+<body>
+  <nav class="navbar myNav navbar-expand-md navbar-dark bg-dark header-nav">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./indexDirector.html">KGL Ltd.</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav mainNavbar">
+          <li class="nav-item mainNav">
+            <a class="nav-link" style="word-wrap: normal; max-width: 125px; text-align: center;" aria-current="page"
+              href="./indexDirector.html">Dashboard (Director)</a>
+          </li>
+          <!-- Make a way back to Director from Manager via the routes -->
+          <li class="nav-item mainNav">
+            <a class="nav-link" style="word-wrap: normal; max-width: 125px; text-align: center;"
+              href="./dirMangDash.html">Dashboard (Manager)</a>
+          </li>
+          <li class="nav-item mainNav">
+            <a class="nav-link" href="./directorPurchases.html">Purchases</a>
+          </li>
+          <li class="nav-item mainNav">
+            <a class="nav-link" href="./directorSales.html">Sales</a>
+          </li>
+          <li class="nav-item mainNav">
+            <a class="nav-link" href="./directorSuppliers.html">Suppliers</a>
+          </li>
+          <li class="nav-item mainNav">
+            <a class="nav-link active" href="#">Creditors</a>
+          </li>
+          <li class="nav-item dropdown mainNav">
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+              <img src="../assets/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg" alt="Profile"
+                class="profileImg" />
+              <span class="d-none d-md-block dropdown-toggle ps-2">M.Orban</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
+              aria-labelledby="navbarDropdownMenuLink">
+              <li class="dropdown-header">
+                <h6>Orban Martin</h6>
+                <span>Director</span>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal"
+                  data-bs-target="#largeModalprofile" onclick="profileModal()">
+                  <i class="bi bi-person"></i>
+                  <span>My Profile</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li>
+                <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal"
+                  data-bs-target="#largeModalAccts" onclick="acctSettingModal()">
+                  <i class="bi bi-gear"></i>
+                  <span>User Account Settings</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="../login+registration/loginModal.html">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="card mb-0">
+    <div class="card-body bodyCard">
+      <!-- Bordered Tabs -->
+      <ul class="nav nav-tabs nav-tabs-bordered mainNav-tabs-bordered" id="borderedTab" role="tablist">
+        <li class="nav-item mainNav" role="presentation">
+          <button class="nav-link active" id="home-tabMain" data-bs-toggle="tab" data-bs-target="#bordered-home"
+            type="button" role="tab" aria-controls="home" aria-selected="true">
+            Creditor List
+          </button>
+        </li>
+        <li class="nav-item mainNav" role="presentation">
+          <button class="nav-link" id="profile-tabMain" data-bs-toggle="modal"
+            data-bs-target="#modalDialogScrollableSupplier" type="button" role="tab" aria-controls="profile"
+            aria-selected="false">
+            + New Creditor
+          </button>
+        </li>
+      </ul>
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../assets/img/istockphoto-181068280-1024x1024.jpg" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+      </div>
+      <div class="tab-content pt-3" id="borderedTabContent">
+        <div class="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="container">
+            <div class="row">
+              <div class="card mb-1" style="background-color:antiquewhite; border: 1px solid rgba(70, 71, 95, 0.803);">
+                <div class="card-body pb-0">
+                  <h5 class="card-title pb-0">Creditor List</h5>
+                  <!-- Table with stripped rows -->
+                  <table class="table table-striped datatable table-reponsive">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Creditor Category</th>
+                        <th scope="col">Business Name</th>
+                        <th scope="col">Telephone</th>
+                        <th scope="col">Email Address</th>
+                        <th scope="col">Physical Address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>James</td>
+                        <td>Kyeba</td>
+                        <td>Individual Farmer</td>
+                        <td>Kyab & Sons Ltd.</td>
+                        <td>0773947384</td>
+                        <td>K&SLtd@gmail.com</td>
+                        <td>Plot 3, Kaggawa Close, Kampala.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Kenny</td>
+                        <td>Rogers</td>
+                        <td>Enterprise</td>
+                        <td>KJT Cereals Ltd.</td>
+                        <td>0783920384</td>
+                        <td>KJTCrls@gmail.com</td>
+                        <td>Plot 5, Industrial Area, Kampala.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Moses</td>
+                        <td>Kirya</td>
+                        <td>Enterprise</td>
+                        <td>Kirya Commercial Farm Ltd.</td>
+                        <td>0756453672</td>
+                        <td>KCF@yahoomail.com</td>
+                        <td>Plot 4 Kawempe East</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>Erica</td>
+                        <td>Nalubega</td>
+                        <td>Enterprise</td>
+                        <td>Quality Supermarket</td>
+                        <td>0709873945</td>
+                        <td>QSMg@yahoomail.com</td>
+                        <td>Plot 5, Ntinda Ave.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>Sean</td>
+                        <td>Ssozi</td>
+                        <td>Individual Farmer</td>
+                        <td>UgaCereals Ltd.</td>
+                        <td>0777768439</td>
+                        <td>UgaCereals@gmail.com</td>
+                        <td>Plot 1 Kira Rd, Kampala.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- End Table with stripped rows -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- Modal Dialog Scrollable -->
+        <!-- <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#modalDialogScrollableSupplier"
+    >
+      User Profile
+    </button> -->
+
+        <div class="modal fade" id="modalDialogScrollableSupplier" tabindex="-1">
+          <div class="modal-dialog modal-dialog-scrollableSupplier">
+            <div class="modal-content">
+              <div class="modal-header fresher" style="height:50px;">
+                <h5 class="modal-title">New Creditor Entry</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" style="background-color:rgba(43, 45, 79, 0.531);">
+                <div class="container-fluid d-flex justify-content-center">
+                  <form class="row g-3 mb-3" name="addsupplier">
+                    <div class="col-sm-7">
+                      <div class="row gy-3">
+                        <div class="col-sm-12">
+
+                          <input type="text" class="form-control" onblur="supplierFirstName()" name="firstname"
+                            id="inputName5" placeholder="First Name" />
+                        </div>
+                        <div class="col-sm-12">
+
+                          <input type="text" class="form-control" onblur="supplierSur()" name="surname" id="inputName5"
+                            placeholder="Surname" />
+                        </div>
+                        <div class="col-sm-12 form-floating">
+
+                          <select type="text" class="form-control" onblur="supplierCateg()" name="category"
+                            id="inputName5">
+                            <option selected disabled>Select Category:</option>
+                            <option value="1">Individual Buyer</option>
+                            <option value="2">Enterprise</option>
+                          </select>
+                          <label for="inputName5">Creditor Category</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-5 mt-3">
+                      <img id="profile"
+                        src="../assets/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg"
+                        style="border-radius:5px;" alt="" />
+                    </div>
+                    <div class="col-sm-12">
+
+                      <input type="text" class="form-control" id="inputAddres5s" onblur="supplierBizName()"
+                        name="business" placeholder="Business Name" />
+                    </div>
+                    <div class="col-sm-6">
+
+                      <input type="text" class="form-control" id="inputAddres5s" name="telephone"
+                        onblur="supplierTelephone()" placeholder="Telephone" />
+                    </div>
+                    <div class="col-sm-6">
+
+                      <input type="text" class="form-control" name="businesstelephone" onblur="supplierBizTel()"
+                        id="inputAddres5s" placeholder="Business Telephone" />
+                    </div>
+                    <div class="col-sm-6">
+
+                      <input type="text" class="form-control" name="email" onblur="supplierEmail()" id="inputAddres5s"
+                        placeholder="E-mail" />
+                    </div>
+                    <div class="col-sm-6">
+
+                      <input type="text" class="form-control" name="businessemail" onblur="supplierBizEmail()"
+                        id="inputAddres5s" placeholder="Business E-mail" />
+                    </div>
+                    <div class="col-sm-6">
+
+                      <input type="text" class="form-control" id="inputAddres5s" name="physicaladdress"
+                        onblur="supplierAddress()" placeholder="Physical Address" />
+                    </div>
+                    <div class="col-sm-6">
+
+                      <input type="text" class="form-control" id="inputAddres5s" name="physicaladdress2"
+                        onblur="supplierBizAddr()" placeholder="Physical Address 2" />
+                    </div>
+
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" name="nin" onblur="supplierNIN()" id="inputAddress2"
+                        placeholder="National ID Number" />
+                    </div>
+
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" id="inputAddress2" onblur="supplierTIN()" name="tin"
+                        placeholder="TIN Number" />
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer fresher pt-0 pb-0">
+
+                <button type="submit" data-bs-dismiss="modal" class="btn btn-dark">Add Creditor</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Modal Dialog Scrollable-->
+      </div>
+      <!-- End Bordered Tabs -->
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div class="modal fade" id="largeModalprofile" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header fresher">
+          <h5 class="modal-title">User Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- #main -->
+          <main id="main" class="main">
+            <div class="pagetitle profiletitle">
+              <h1>Profile</h1>
+              <nav>
+                <ol class="breadcrumb profileCrumb">
+                  <li class="breadcrumb-item">
+                    <a href="index.html">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">Users</li>
+                  <li class="breadcrumb-item active">Profile</li>
+                </ol>
+              </nav>
+            </div>
+            <!-- End Page Title -->
+
+        </div>
+        <section class="section profile">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                  <img src="../assets/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg" alt="Profile"
+                    class="rounded-circle" />
+                  <h2>Mr.Orban</h2>
+                  <h3>Director</h3>
+                  <!-- <div class="social-links mt-2">
+                          <a href="#" class="twitter"
+                            ><i class="bi bi-twitter"></i
+                          ></a>
+                          <a href="#" class="facebook"
+                            ><i class="bi bi-facebook"></i
+                          ></a>
+                          <a href="#" class="instagram"
+                            ><i class="bi bi-instagram"></i
+                          ></a>
+                          <a href="#" class="linkedin"
+                            ><i class="bi bi-linkedin"></i
+                          ></a>
+                        </div> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-8">
+              <div class="card">
+                <div class="card-body pt-3">
+                  <!-- Bordered Tabs -->
+                  <ul class="nav nav-tabs nav-tabs-bordered">
+                    <li class="nav-item">
+                      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">
+                        Overview
+                      </button>
+                    </li>
+
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">
+                        Edit Profile
+                      </button>
+                    </li>
+
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">
+                        Settings
+                      </button>
+                    </li>
+
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">
+                        Change Password
+                      </button>
+                    </li>
+                  </ul>
+                  <div class="tab-content pt-2">
+                    <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                      <h5 class="card-title">About</h5>
+                      <p class="small fst-italic">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. Vestibulum hendrerit, ante a sagittis
+                        posuere, elit nibh convallis nunc, quis faucibus
+                        sem diam id leo. Vivamus id arcu pellentesque,
+                        blandit tortor sagittis, facilisis libero. Aenean
+                        mattis tellus a dui consectetur, et viverra turpis
+                        aliquam.
+                      </p>
+
+                      <h5 class="card-title">Profile Details</h5>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">
+                          Full Name
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                          Orban Martin-Luther
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Company</div>
+                        <div class="col-lg-9 col-md-8">
+                          Karibu Groceries Limited.
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Job</div>
+                        <div class="col-lg-9 col-md-8">Director</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Country</div>
+                        <div class="col-lg-9 col-md-8">UGANDA</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Address</div>
+                        <div class="col-lg-9 col-md-8">
+                          Kawaga Close, off Kalungi Road, Muyenga,
+                          Kampala, Uganda.
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Phone</div>
+                        <div class="col-lg-9 col-md-8">
+                          +256 759 912 204
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Email</div>
+                        <div class="col-lg-9 col-md-8">
+                          d.mugisa@student.ciu.ac.ug
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                      <!-- Profile Edit Form -->
+                      <form name="editprofile">
+                        <div class="row mb-3">
+                          <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                          <div class="col-md-8 col-lg-9">
+                            <img src="../assets/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg"
+                              alt="Profile" />
+                            <div class="pt-2">
+                              <a href="#" class="btn btn-dark btn-sm" title="Upload new profile image"><i
+                                  class="bi bi-upload"></i></a>
+                              <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                                  class="bi bi-trash"></i></a>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="fullname" onblur="profileName()" type="text" class="form-control" id="fullName"
+                              placeholder="Full Name" value="" />
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                          <div class="col-md-8 col-lg-9">
+                            <textarea name="about" onblur="profileAbout()" class="form-control" id="about"
+                              style="height: 100px"></textarea>
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="company" onblur="profileCompany()" type="text" class="form-control"
+                              id="company" placeholder="Karibu Groceries Limited." value="" />
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="job" onblur="profileRole()" type="text" class="form-control" id="Job"
+                              placeholder="Manager" value="" />
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="country" onblur="profileCountry()" type="text" class="form-control"
+                              id="Country" placeholder="UGANDA" value="" />
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="address" onblur="profileAddress()" type="text" class="form-control"
+                              id="Address" placeholder="Kawaga Close, off Kalungi Road, Muyenga, Kampala, Uganda."
+                              value="" />
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="phone" onblur="profilePhone()" type="text" class="form-control" id="Phone"
+                              placeholder="--- --- --- ---" value="" />
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="email" onblur="profileEmail()" type="email" class="form-control" id="Email"
+                              placeholder="email@example.ac.ug" value="" />
+                          </div>
+                        </div>
+
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-dark">
+                            Save Changes
+                          </button>
+                        </div>
+                      </form>
+                      <!-- End Profile Edit Form -->
+                    </div>
+
+                    <div class="tab-pane fade pt-3" id="profile-settings">
+                      <!-- Settings Form -->
+                      <form>
+                        <div class="row mb-3">
+                          <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                          <div class="col-md-8 col-lg-9">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="changesMade" checked />
+                              <label class="form-check-label" for="changesMade">
+                                Changes made to your account
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="newProducts" checked />
+                              <label class="form-check-label" for="newProducts">
+                                Information on new products and services
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="proOffers" />
+                              <label class="form-check-label" for="proOffers">
+                                Marketing and promo offers
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled />
+                              <label class="form-check-label" for="securityNotify">
+                                Security alerts
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-dark">
+                            Save Changes
+                          </button>
+                        </div>
+                      </form>
+                      <!-- End settings Form -->
+                    </div>
+
+                    <div class="tab-pane fade pt-3" id="profile-change-password">
+                      <!-- Change Password Form -->
+                      <form>
+                        <div class="row mb-3">
+                          <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="password" type="password" class="form-control" id="currentPassword" />
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="newpassword" type="password" class="form-control" id="newPassword" />
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New
+                            Password</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="renewpassword" type="password" class="form-control" id="renewPassword" />
+                          </div>
+                        </div>
+
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-dark">
+                            Change Password
+                          </button>
+                        </div>
+                      </form>
+                      <!-- End Change Password Form -->
+                    </div>
+                  </div>
+                  <!-- End Bordered Tabs -->
+                </div>
+                <div class="modal-footer fresher">
+                  <!-- <button
+                            type="button"
+                            class="btn btn-dark"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                          <button type="button" class="btn btn-dark">Save changes</button> -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+        </main>
+        <!-- End #Main -->
+      </div>
+    </div>
+  </div>
+  <!-- End of Profile Modal -->
+
+  <!-- User Settings Modal -->
+  <div class="modal fade" id="largeModalAccts" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header fresher">
+          <h5 class="modal-title">User Account Settings</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5 class="h5 pb-3 pt-1 mb-0" style="font-weight:550;">Master Account</h5>
+          <div class="card">
+            <div class="card-body body-carder">
+
+              <!-- Bordered Tabs Justified -->
+              <ul class="nav nav-tabs userSetTab nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
+                <li class="nav-item userSet flex-fill"
+                  style="border-left:1px solid black; border-right:1px solid black;" role="presentation">
+                  <button class="nav-link userSetLink w-100 active" id="home-tab" data-bs-toggle="tab"
+                    data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="home"
+                    aria-selected="true">
+                    View All User Accounts
+                  </button>
+                </li>
+                <li class="nav-item userSet flex-fill"
+                  style="border-left:1px solid black; border-right: 1px solid black;" role="presentation">
+                  <button class="nav-link userSetLink w-100" id="profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="profile"
+                    aria-selected="false">
+                    Create User Account
+                  </button>
+                </li>
+                <li class="nav-item userSet flex-fill"
+                  style="border-left:1px solid black; border-right:1px solid black;" role="presentation">
+                  <button class="nav-link userSetLink w-100" id="contact-tab" data-bs-toggle="tab"
+                    data-bs-target="#bordered-justified-contact" type="button" role="tab" aria-controls="contact"
+                    aria-selected="false">
+                    Authorization Requests
+                  </button>
+                </li>
+              </ul>
+              <div class="tab-content pt-2" id="borderedTabJustifiedContent">
+                <div class="tab-pane fade show active" id="bordered-justified-home" role="tabpanel"
+                  aria-labelledby="home-tab">
+                  <div class="card">
+                    <div class="card-body pb-0">
+                      <h5 class="card-title">User Accounts</h5>
+
+                      <!-- Table with stripped rows -->
+                      <table class="table datatable table-responsive">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">User Account</th>
+                            <th scope="col">Authorization</th>
+                            <th scope="col">Modify Account</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Dominic Mugisa</td>
+                            <td>Manager - Maganjo</td>
+                            <td><button class="btn btn-success p-1 pt-0 pb-0">Edit Account</button> <button
+                                class="btn btn-danger p-1 pt-0 pb-0">Delete</button></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Osman Buyondo</td>
+                            <td>Manager - Matugga</td>
+                            <td><button class="btn btn-success p-1 pt-0 pb-0">Edit Account</button> <button
+                                class="btn btn-danger p-1 pt-0 pb-0">Delete</button></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Joan.N</td>
+                            <td>Sales Agent - Maganjo</td>
+                            <td><button class="btn btn-success p-1 pt-0 pb-0">Edit Account</button> <button
+                                class="btn btn-danger p-1 pt-0 pb-0">Delete</button></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Julia.N</td>
+                            <td>Sales Agent - Maganjo</td>
+                            <td><button class="btn btn-success p-1 pt-0 pb-0">Edit Account</button> <button
+                                class="btn btn-danger p-1 pt-0 pb-0">Delete</button></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>Fred Nsereko</td>
+                            <td>Sales Agent - Matugga</td>
+                            <td><button class="btn btn-success p-1 pt-0 pb-0">Edit Account</button> <button
+                                class="btn btn-danger p-1 pt-0 pb-0">Delete</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!-- End Table with stripped rows -->
+
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="bordered-justified-profile" role="tabpanel"
+                  aria-labelledby="profile-tab">
+                  <div class="card">
+                    <div class="card-body pb-0">
+                      <h5 class="card-title">New User</h5>
+
+                      <div class="container-fluid d-flex justify-content-center">
+                        <form class="row gy-3 mb-3" name="createprofile">
+                          <div class="col-sm-7">
+                            <div class="row gy-3">
+                              <div class="col-sm-12">
+                                <label for="inputName5" class="form-label">First Name</label>
+                                <input type="text" class="form-control" name="firstname" onblur="firstName()"
+                                  id="inputName5" />
+                              </div>
+                              <div class="col-sm-12">
+                                <label for="inputName5" class="form-label">Surname</label>
+                                <input type="text" class="form-control" name="surname" onblur="surName()"
+                                  id="inputName5" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-5 d-flex justify-content-center">
+                            <img id="profilemaster"
+                              src="../assets/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg"
+                              alt="" />
+                          </div>
+
+                          <div class="col-sm-6">
+                            <label for="inputAddress5" class="form-label">Telephone</label>
+                            <input type="text" name="telephone" onblur="userTel()" class="form-control"
+                              id="inputAddres5s" placeholder="Telephone" />
+                          </div>
+
+                          <div class="col-sm-6">
+                            <label for="inputAddress5" class="form-label">Email</label>
+                            <input type="text" name="email" onblur="userMail()" class="form-control" id="inputAddres5s"
+                              placeholder="email@example.com" />
+                          </div>
+
+                          <div class="col-sm-6">
+                            <label for="inputAddress5" class="form-label">Physical Address</label>
+                            <input type="text" class="form-control" id="inputAddres5s" onblur="userAddr()"
+                              name="address1" placeholder="Physical Address" />
+                          </div>
+                          <div class="col-sm-6">
+                            <label for="inputAddress5" class="form-label">Physical Address 2</label>
+                            <input type="text" class="form-control" name="address2" onblur="userAddr2()"
+                              id="inputAddres5s" placeholder="Physical Address" />
+                          </div>
+                          <div class="col-sm-6">
+                            <label for="inputAddress2" class="form-label">National ID Number</label>
+                            <input type="text" class="form-control" name="nin" onblur="userNIN()" id="inputAddress2"
+                              placeholder="____________" />
+                          </div>
+                          <div class="col-sm-6 mb-4">
+                            <label for="inputAddress2" class="form-label">TIN Number</label>
+                            <input type="text" class="form-control" name="tin" onblur="userTIN()" id="inputAddress2"
+                              placeholder="____________" />
+                          </div>
+                          <div class="d-flex justify-content-end">
+                            <ul style="list-style-type:none;">
+                              <li>
+                                <button type="submit" class="btn btn-dark listbtn">Create User</button>
+                                <button type="button" class="btn btn-dark listbtn"
+                                  data-bs-dismiss="modal">Cancel</button>
+                              </li>
+                            </ul>
+                          </div>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="bordered-justified-contact" role="tabpanel"
+                  aria-labelledby="contact-tab">
+                  <div class="card">
+                    <div class="card-body pb-0">
+                      <h5 class="card-title pb-0 mb-0">Authorization Requests</h5>
+
+                      <ul class="notifications" style="list-style-type:none;">
+                        <li class="dropdown-header pb-0">
+                          You have 2 new notifications
+                          <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2 mb-1 mt-1">View all</span></a>
+                        </li>
+                        <li>
+                          <hr class="dropdown-divider mt-0">
+                        </li>
+
+                        <li class="notification-item">
+                          <i class="bi bi-info-circle text-primary"></i>
+                          <div>
+                            <h4>Sales Agent - Mattuga</h4>
+                            <ul style="list-style-type: none;">
+                              <li> Review User Authorization Request.</li>
+                              <li><button class="btn btn-success p-1 ms-1 pt-0 pb-0">Accept</button><button
+                                  class="btn btn-danger p-1 ms-1 pt-0 pb-0">Defer</button></li>
+                            </ul>
+                            <p>30 min. ago</p>
+                          </div>
+                        </li>
+
+                        <li>
+                          <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                          <i class="bi bi-info-circle text-primary"></i>
+                          <div>
+                            <h4>Sales Agent - Mattuga</h4>
+                            <ul style="list-style-type: none;">
+                              <li> Review User Authorization Request.</li>
+                              <li><button class="btn btn-success p-1 ms-1 pt-0 pb-0">Accept</button><button
+                                  class="btn btn-danger p-1 ms-1 pt-0 pb-0">Defer</button></li>
+                            </ul>
+                            <p>1 hr. ago</p>
+                          </div>
+                        </li>
+
+                        <li>
+                          <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                          <a href="#">Show all notifications</a>
+                        </li>
+
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Bordered Tabs Justified -->
+            </div>
+            <div class="d-flex justify-content-end">
+              <ul style="list-style-type:none;">
+                <li>
+                  <button type="button" class="btn btn-dark listbtn" data-bs-dismiss="modal">Dismiss</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer pt-0 fresher" style="height:50px;">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of User Settings Modal -->
+  <footer style="background-color:rgba(70, 71, 95, 0.803); height: 50px;" id="footer" class="footer">
+    <div class="copyright" style="text-align: center; color:black; font-size:medium;">
+      <p>Copyright 2022 &copy; Dev'd By Dom</p>
+    </div>
+  </footer>
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/index.js"></script>
+</body>
+
+</html>

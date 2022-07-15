@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>Register Modal</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Datatables CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/index.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#fullscreenModal").modal("show");
+    });
+  </script>
+
+</head>
+
+<body>
+
+  <div class="modal fade" id="fullscreenModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header welcm" style="height:50px;">
+          <h5 class="modal-title titlez">Account Registration</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body fresher">
+          <main>
+            <div class="container">
+              <section
+                class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex justify-content-center pb-1">
+                        <a href="#" class="logo d-flex align-items-center w-auto">
+                          <span class="d-none d-lg-block text-nowrap"
+                            style="font-family: algerian; color:rgb(59, 60, 81);">Karibu Groceries Ltd.</span>
+                        </a>
+                      </div>
+
+                      <div class="card mb-3">
+                        <div class="card-body purp">
+                          <div class="pt-1 pb-2">
+                            <h6 class="card-title text-center pt-2 pb-2 fs-4"
+                              style="color:rgba(249, 231, 209, 0.854); font-family: algerian;">
+                              Register an Account
+                            </h6>
+                            <p class="text-center small mb-2" style="color:rgba(249, 231, 209, 0.854);">
+                              Enter your details below to <span
+                                style="text-decoration:underline 1px solid rgba(249, 231, 209, 0.854);">Request</span>
+                              <br> for user authorization.
+                            </p>
+                          </div>
+
+                          <form class="row g-4 needs-validation" name="registeruser">
+                            <div class="col-12">
+                              <input placeholder="Full Name" type="text" name="name" class="form-control" id="yourName"
+                                required />
+                              <div class="invalid-feedback">
+                                Please, enter your name!
+                              </div>
+                            </div>
+
+                            <div class="col-12">
+                              <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input placeholder="Username / Email" type="text" name="username" class="form-control"
+                                  id="yourUsername" required />
+                                <div class="invalid-feedback">
+                                  Please enter your username.
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-12">
+                              <input placeholder="Password" type="password" name="password" class="form-control"
+                                id="yourPassword" required />
+                              <div class="invalid-feedback">
+                                Please enter your password!
+                              </div>
+                            </div>
+
+                            <div class="col-12">
+                              <select name="authorization" onblur="userAuthorReg()" class="form-select"
+                                id="authorizationSelect" aria-label="authorization" required>
+                                <option selected disabled value="">Select Authorization:</option>
+                                <option value="1">Director</option>
+                                <option value="2">Manager</option>
+                                <option value="3">Sales Agent</option>
+                              </select>
+                              <div class="valid-feedback">Supplier Category is valid!</div>
+                              <div class="invalid-feedback">Supplier Category is not valid!</div>
+                            </div>
+
+                            <div class="col-12">
+                              <div class="form-check">
+                                <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms"
+                                  required />
+                                <label class="form-check-label" for="acceptTerms"
+                                  style="color:rgba(249, 231, 209, 0.854);">I agree and accept the
+                                  <a href="#"
+                                    style="color:rgba(249, 231, 209, 0.854); text-decoration:underline 1px solid rgba(249, 231, 209, 0.854);">terms
+                                    and conditions</a></label>
+                                <div class="invalid-feedback">
+                                  You must agree before submitting.
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <button class="btn btn-dark w-100" type="submit">
+                                Request Authorization
+                              </button>
+                            </div>
+                            <div class="col-12" style="text-align:center;">
+                              <p class="small mb-0" style="color:rgba(249, 231, 209, 0.854);">
+                                Already have an account?
+                                <a href="../login+registration/loginModal.html"
+                                  style="color:rgba(249, 231, 209, 0.854); text-decoration:underline 1px solid rgba(249, 231, 209, 0.854);">Log
+                                  in</a>
+                              </p>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </main>
+        </div>
+        <div class="modal-footer welcm" style="justify-content:center; height: 50px;">
+          <p class="titlez">Copyright 2022 &copy; Dev'd By Dom</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/index.js"></script>
+
+</body>
+
+</html>
