@@ -1229,6 +1229,7 @@ const userPassLogin = () =>{
   if (passLen == 0 || passLen < 8 || passLen > 15){
     password.focus();
     password.style.border = "2px solid red";
+    // alert('');
   }
 };
 const userNamLogin = () =>{
@@ -1237,5 +1238,41 @@ const userNamLogin = () =>{
   if (nameLen == 0 || passLen < 5 || passLen > 25){
     username.focus();
     username.style.border = "2px solid red";
+    // alert('');
+  }
+};
+const userPassReg = () =>{
+  let password = document.registeruser.password;
+  let passLen = password.value.length;
+  if (passLen == 0 || passLen < 8 || passLen > 15){
+    password.focus();
+    password.style.border = "2px solid red";
+    // alert('');
+  }
+};
+const userNamReg = () =>{
+  let username = document.registeruser.username;
+  let nameLen = username.value.length;
+  if (nameLen == 0 || nameLen < 5 || nameLen > 25){
+    username.focus();
+    username.style.border = "2px solid red";
+    // alert('');
+  }
+};
+const userFullNamReg = () =>{
+  let username = document.registeruser.fullname;
+  let nameLen = username.value.length;
+  if (nameLen == 0 || nameLen < 10 || nameLen > 25){
+    username.focus();
+    username.style.border = "2px solid red";
+    // alert('');
+  }
+  let letters = /^[A-Za-z]+$/;
+  if (username.value.match(letters)) {
+    return true;
+  } else {
+    username.focus();
+    username.style.border = "2px solid red";
+    // alert('');
   }
 };

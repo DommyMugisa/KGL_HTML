@@ -68,7 +68,7 @@
 
                           <form class="row g-4 needs-validation" name="registeruser">
                             <div class="col-12">
-                              <input placeholder="Full Name" type="text" name="name" class="form-control" id="yourName"
+                              <input placeholder="Full Name" type="text" name="fullname" onblur="userFullNamReg()" class="form-control" id="yourName"
                                 required />
                               <div class="invalid-feedback">
                                 Please, enter your name!
@@ -78,7 +78,7 @@
                             <div class="col-12">
                               <div class="input-group has-validation">
                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                <input placeholder="Username / Email" type="text" name="username" class="form-control"
+                                <input placeholder="Username / Email" type="text" name="username" onblur="userNamReg()" class="form-control"
                                   id="yourUsername" required />
                                 <div class="invalid-feedback">
                                   Please enter your username.
@@ -87,7 +87,7 @@
                             </div>
 
                             <div class="col-12">
-                              <input placeholder="Password" type="password" name="password" class="form-control"
+                              <input placeholder="Password" type="password" name="password" onblur="userPassReg()" class="form-control"
                                 id="yourPassword" required />
                               <div class="invalid-feedback">
                                 Please enter your password!
